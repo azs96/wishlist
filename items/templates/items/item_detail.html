@@ -13,9 +13,6 @@
       <p>{{ item.memo }}</p>
       <h3>price</h3>
       <p>{{ item.price }}</p>
-      <a href="{% url 'item-update' item.id %}">
-        <button style="background-color: #5289AF; color: #F7F7EF; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Edit</button>
-      </a>
     </div>
 </div>
 <hr>
@@ -26,6 +23,16 @@
     <div class="col">
         <p class="text-muted">updated_at：{{ item.updated_at }}</p>
     </div>
+</div>
+<div class="row">
+    <div class="col d-flex justify-content-end">
+    <a href="{% url 'item-update' item.id %}">
+      <button style="background-color: #5289AF; color: #F7F7EF; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-right: 10px;">Edit</button>
+    </a>
+    <a href="{% url 'item-delete' item.id %}">
+      <button style="background-color: #EEAA65; color: #F7F7EF; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Delete</button>
+    </a>
+  </div>
 </div>
 
 {% endblock %}

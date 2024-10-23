@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from items.views import ItemCreateView, ItemDetailView, ItemListView, ItemUpdateView
+from items.views import ItemCreateView, ItemDeleteView, ItemDetailView, ItemListView, ItemUpdateView
 from lib.views import IndexTemplateView
 
 urlpatterns = [
@@ -26,5 +26,6 @@ urlpatterns = [
     path('item/create', ItemCreateView.as_view(), name="item-create"),
     path('item/<int:pk>', ItemDetailView.as_view(), name="item-detail"),
     path('item/<int:pk>/update', ItemUpdateView.as_view(), name="item-update"),
+    path('item/<int:pk>/delete', ItemDeleteView.as_view(), name="item-delete"),
     path('', IndexTemplateView.as_view(), name="index"),
 ]
