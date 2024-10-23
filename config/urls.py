@@ -17,6 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from items.views import ItemListView
+from lib.views import IndexTemplateView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('item/', ItemListView.as_view(), name="item-index"),
+    path('', IndexTemplateView.as_view(), name="index"),
 ]
