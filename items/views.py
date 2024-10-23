@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import CreateView, DetailView, ListView
+from django.views.generic import CreateView, DetailView, ListView, UpdateView
 
 from items.models import Item
 
@@ -15,3 +15,8 @@ class ItemCreateView(CreateView):
 
 class ItemDetailView(DetailView):
   model = Item
+
+class ItemUpdateView(UpdateView):
+  model = Item
+  fields = ['name', 'price', 'memo']
+  success_url = "/"
