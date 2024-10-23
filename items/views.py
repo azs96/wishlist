@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
 from items.models import Item
@@ -11,7 +12,7 @@ class ItemListView(ListView):
 class ItemCreateView(CreateView):
   model = Item
   fields = ['name', 'price', 'memo']
-  success_url = "/"
+  success_url = reverse_lazy('item:index')
 
 class ItemDetailView(DetailView):
   model = Item
@@ -19,8 +20,11 @@ class ItemDetailView(DetailView):
 class ItemUpdateView(UpdateView):
   model = Item
   fields = ['name', 'price', 'memo']
-  success_url = "/"
+
+  def get_success_url(self):
+    pk = self.kwargs.get('pk')
+    return reverse('item:detail', kwargs={'pk': pk})
 
 class ItemDeleteView(DeleteView):
   model = Item
-  success_url = "/"
+  success_url = reverse_lazy('item:index')
