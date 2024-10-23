@@ -17,11 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from items.views import ItemListView
+from items.views import ItemCreateView, ItemListView
 from lib.views import IndexTemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('item/', ItemListView.as_view(), name="item-index"),
+    path('item/create', ItemCreateView.as_view(), name="item-create"),
     path('', IndexTemplateView.as_view(), name="index"),
 ]
