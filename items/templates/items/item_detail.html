@@ -26,10 +26,10 @@
 </div>
 <div class="row">
     <div class="col d-flex justify-content-end">
-    <a href="{% url 'item-update' item.id %}">
+    <a href="{% url 'item:update' item.id %}">
       <button style="background-color: #5289AF; color: #F7F7EF; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-right: 10px;">Edit</button>
     </a>
-    <a href="{% url 'item-delete' item.id %}">
+    <a href="{% url 'item:delete' item.id %}">
       <button style="background-color: #EEAA65; color: #F7F7EF; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Delete</button>
     </a>
   </div>

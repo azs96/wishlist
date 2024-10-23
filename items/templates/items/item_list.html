@@ -3,15 +3,17 @@
 <div class="row">
     {% for item in item_list %}
     <div class="col-md-3 col-sm-4 col-6 item-card mb-4">
-        <div class="card h-80" style="background-color: #F7F7EF; border: none;">
-            <div class="card-body py-2" style="background-color: #F7F7EF;">
-                <h5 class="item-title" style="color: #5289AF;">{{ item.name }}</h5>
+        <a href="{% url 'item:detail' item.id %}">
+            <div class="card h-80" style="background-color: #F7F7EF; border: none;">
+                <div class="card-body py-2" style="background-color: #F7F7EF;">
+                    <h5 class="item-title" style="color: #5289AF;">{{ item.name }}</h5>
+                </div>
+                <img src="{{ item.image_url|default:'https://via.placeholder.com/300' }}" class="card-img-top item-image" alt="{{ item.name }}">
+                <div class="card-body py-2" style="background-color: #F7F7EF;">
+                    <p class="item-price" style="color: #497B76;">¥{{ item.price }}</p>
+                </div>
             </div>
-            <img src="{{ item.image_url|default:'https://via.placeholder.com/300' }}" class="card-img-top item-image" alt="{{ item.name }}">
-            <div class="card-body py-2" style="background-color: #F7F7EF;">
-                <p class="item-price" style="color: #497B76;">¥{{ item.price }}</p>
-            </div>
-        </div>
+        </a>
     </div>
     {% endfor %}
 </div>
