@@ -18,6 +18,8 @@ class Item(models.Model):
     options = {"quality": 80}
   )
 
+  purchased = models.BooleanField(default=False)
+
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
 
