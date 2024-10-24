@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.db.models import Q
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
@@ -8,6 +9,15 @@ from items.models import Item
 # Create your views here.
 class ItemListView(ListView):
   model = Item
+
+  def get_queryset(self):
+    qs = Item.objects.all()
+    keyword = self.request.GET.get('q')
+
+    if keyword:
+      qs = qs.filter(Q(name__contains=keyword) | Q(memo__contains=keyword))
+
+    return qs
 
 
 class ItemCreateView(CreateView):
