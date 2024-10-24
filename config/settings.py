@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'items',
     'crispy_forms',
     'crispy_bootstrap4',
+    'imagekit',
 ]
 
 MIDDLEWARE = [
