@@ -12,7 +12,7 @@ class ItemListView(ListView):
 
 class ItemCreateView(CreateView):
   model = Item
-  fields = ['name', 'price', 'memo']
+  fields = ['name', 'price', 'memo', 'image']
   success_url = reverse_lazy('item:index')
 
   def form_valid(self, form):
@@ -28,7 +28,7 @@ class ItemDetailView(DetailView):
 
 class ItemUpdateView(UpdateView):
   model = Item
-  fields = ['name', 'price', 'memo']
+  fields = ['name', 'price', 'memo', 'image']
 
   def get_success_url(self):
     pk = self.kwargs.get('pk')

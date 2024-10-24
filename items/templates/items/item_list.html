@@ -8,8 +8,12 @@
                 <div class="card-body py-2" style="background-color: #F7F7EF;">
                     <h5 class="item-title" style="color: #5289AF;">{{ item.name }}</h5>
                 </div>
-                <img src="{{ item.image_url|default:'https://via.placeholder.com/300' }}" class="card-img-top item-image" alt="{{ item.name }}">
-                <div class="card-body py-2" style="background-color: #F7F7EF;">
+                {% if item.image %}
+                    <img src="{{ item.image.url }}" class="card-img-top item-image" alt="{{ item.name }}">
+                {% else %}
+                    <img src="https://via.placeholder.com/300" class="card-img-top item-image" alt="{{ item.name }}">
+                {% endif %}
+                    <div class="card-body py-2" style="background-color: #F7F7EF;">
                     <p class="item-price" style="color: #497B76;">¥{{ item.price }}</p>
                 </div>
             </div>
