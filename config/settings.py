@@ -131,6 +131,9 @@ STATICFILES_DIRS = [
     BASE_DIR / Path("assets")
 ]
 
+MEDIA_ROOT = BASE_DIR / Path('media')
+MEDIA_URL = '/media/' # メディアファイルを配信するときのURL
+
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = "bootstrap4"

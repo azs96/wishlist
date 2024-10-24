@@ -6,6 +6,8 @@ class Item(models.Model):
   memo = models.TextField(null=True, blank=True)
   price = models.IntegerField(default=0) # todo minとmaxにする？
 
+  image = models.ImageField(upload_to='images/uploaded/', default=None, null=True, blank=True)
+
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
 
