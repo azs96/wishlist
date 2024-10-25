@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.db.models import Q
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
@@ -59,3 +59,20 @@ class ItemDeleteView(DeleteView):
   def form_valid(self, form):
     messages.success(self.request, 'Deletion Completed') # メッセージを表示
     return super().form_valid(form)
+
+
+def mark_as_purchased(request, pk):
+  item = get_object_or_404(Item, id=pk)
+  item.purchased = True
+  item.save()
+
+  messages.success(request, 'Marked as Purchased')
+  return redirect('item:detail', pk=pk)
+
+def mark_as_not_purchased(request, pk):
+  item = get_object_or_404(Item, id=pk)
+  item.purchased = False
+  item.save()
+
+  messages.success(request, 'Unmarked as Purchased')
+  return redirect('item:detail', pk=pk)
