@@ -20,6 +20,10 @@
       <p>{{ item.memo }}</p>
       <h3>price</h3>
       <p>{{ item.price }}</p>
+      <h3>Tags</h3>
+      {% for tag in item.tags.all %}
+      <p>{{ tag }}</p>
+      {% endfor %}
     </div>
 </div>
 <hr>
