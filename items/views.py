@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
+from items.forms import ItemForm
 from items.models import Item
 
 # Create your views here.
@@ -22,7 +23,7 @@ class ItemListView(ListView):
 
 class ItemCreateView(CreateView):
   model = Item
-  fields = ['name', 'price', 'memo', 'tags', 'image']
+  form_class = ItemForm
   success_url = reverse_lazy('item:index')
 
   def form_valid(self, form):
@@ -38,7 +39,7 @@ class ItemDetailView(DetailView):
 
 class ItemUpdateView(UpdateView):
   model = Item
-  fields = ['name', 'price', 'memo', 'tags', 'image']
+  form_class = ItemForm
 
   def get_success_url(self):
     pk = self.kwargs.get('pk')
