@@ -4,22 +4,34 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
-from items.forms import ItemForm
-from items.models import Item
+from items.forms import ItemForm, ItemSearchForm
+from items.models import Item, Tag
 
 # Create your views here.
 class ItemListView(ListView):
   model = Item
 
   def get_queryset(self):
-    qs = Item.objects.all()
-    keyword = self.request.GET.get('q')
+    qs = super().get_queryset()
+    form = ItemSearchForm(self.request.GET)
 
-    if keyword:
-      qs = qs.filter(Q(name__contains=keyword) | Q(memo__contains=keyword))
+    if form.is_valid():
+        q = form.cleaned_data.get('q')
+        tags = form.cleaned_data.get('tags')
+
+        if q:
+            qs = qs.filter(Q(name__icontains=q) | Q(memo__icontains=q))
+
+        if tags:
+          for tag in tags:
+              qs = qs.filter(tags=tag) # タグが複数選択された場合はand検索
 
     return qs
 
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['form'] = ItemSearchForm(self.request.GET)
+    return context
 
 class ItemCreateView(CreateView):
   model = Item

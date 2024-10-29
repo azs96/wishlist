@@ -10,9 +10,9 @@
     </div>
     <div class="col-lg-5">
       {% if item.image %}
-        <img src="{{ item.detail_main.url }}" width="300" height="300" class="img-fluid rounded border">
+        <img src="{{ item.detail_main.url }}" class="img-fluid rounded border">
       {% else %}
-        <img src="{% static 'images/default_icon.jpeg' %}" width="300" height="300" class="img-fluid rounded border">
+        <img src="{% static 'images/default_icon.jpeg' %}"  class="img-fluid rounded border">
       {% endif %}
     </div>
     <div class="col-lg-7">
