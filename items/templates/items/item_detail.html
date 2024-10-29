@@ -3,64 +3,71 @@
 {% block content %}
 <div class="row my-3">
     <div class="col-lg-12">
-      {% if item.purchased %}
-        <p style="color: #F7F7EF; font-weight: bold; font-size: 2rem; background-color: #9FCABB; padding: 10px; border-radius: 5px;">PURCHASED!!</p>
-      {% endif %}
-      <h1 style="color: #497B76;">{{ item.name }}</h1>
+        {% if item.purchased %}
+            <p style="color: #F7F7EF; font-weight: bold; font-size: 2rem; background-color: #9FCABB; padding: 10px; border-radius: 5px;">PURCHASED!!</p>
+        {% endif %}
+        <h1 style="color: #497B76;">{{ item.name }}</h1>
     </div>
     <div class="col-lg-5">
-      {% if item.image %}
-        <img src="{{ item.detail_main.url }}" class="img-fluid rounded border">
-      {% else %}
-        <img src="{% static 'images/default_icon.jpeg' %}"  class="img-fluid rounded border">
-      {% endif %}
+        {% if item.image %}
+            <img src="{{ item.detail_main.url }}" class="img-fluid rounded border">
+        {% else %}
+            <img src="{% static 'images/default_icon.jpeg' %}"  class="img-fluid rounded border">
+        {% endif %}
     </div>
     <div class="col-lg-7">
-      <h3>memo</h3>
-      <p>{{ item.memo }}</p>
-      <h3>price</h3>
-      <p>{{ item.price }}</p>
+        <h3>Memo</h3>
+        <p>{{ item.memo }}</p>
+        <h3>Price</h3>
+        <p>{{ item.price }}</p>
+        {% if item.url %}
+            <h3>
+                <a href="{{ item.url }}" class="btn btn-outline-secondary" style="text-decoration: none;">
+                    <i class="fas fa-external-link-alt"></i> link to external link
+                </a>
+            </h3>
+        {% endif %}
     </div>
 </div>
 <div class="row ml-1 align-items-baseline">
-  <h4>Tags</h4>
-  {% for tag in item.tags.all %}
-  <p class="ml-2">{{ tag }}</p>
-  {% endfor %}
+    <h4>Tags</h4>
+    {% for tag in item.tags.all %}
+        <p class="ml-2">{{ tag }}</p>
+    {% endfor %}
 </div>
 <hr>
 <div class="row">
     <div class="col">
-        <p class="text-muted">created_at：{{ item.created_at }}</p>
+        <p class="text-muted">Created at: {{ item.created_at }}</p>
     </div>
     <div class="col">
-        <p class="text-muted">updated_at：{{ item.updated_at }}</p>
+        <p class="text-muted">Updated at: {{ item.updated_at }}</p>
     </div>
 </div>
 <div class="row">
     <div class="col d-flex justify-content-end">
-    {% if not item.purchased %}
-      <form method="post" action="{% url 'item:mark_as_purchased' item.id %}" class="d-inline">
-          {% csrf_token %}
-          <button type="submit" style="background-color: #497B76; color: #F7F7EF; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-right: 10px;">
-              Mark as Purchased
-          </button>
-      </form>
-    {% else %}
-      <form method="post" action="{% url 'item:mark_as_not_purchased' item.id %}" class="d-inline">
-          {% csrf_token %}
-          <button type="submit" style="background-color: #497B76; color: #F7F7EF; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-right: 10px;">
-              Mark as NOT Purchased
-          </button>
-      </form>
-    {% endif %}
-    <a href="{% url 'item:update' item.id %}">
-      <button style="background-color: #5289AF; color: #F7F7EF; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-right: 10px;">Edit</button>
-    </a>
-    <a href="{% url 'item:delete' item.id %}">
-      <button style="background-color: #EEAA65; color: #F7F7EF; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Delete</button>
-    </a>
-  </div>
+        {% if not item.purchased %}
+            <form method="post" action="{% url 'item:mark_as_purchased' item.id %}" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" style="background-color: #497B76; color: #F7F7EF; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-right: 10px;">
+                    Mark as Purchased
+                </button>
+            </form>
+        {% else %}
+            <form method="post" action="{% url 'item:mark_as_not_purchased' item.id %}" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" style="background-color: #497B76; color: #F7F7EF; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-right: 10px;">
+                    Mark as NOT Purchased
+                </button>
+            </form>
+        {% endif %}
+        <a href="{% url 'item:update' item.id %}">
+          <button style="background-color: #5289AF; color: #F7F7EF; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-right: 10px;">Edit</button>
+        </a>
+        <a href="{% url 'item:delete' item.id %}">
+          <button style="background-color: #EEAA65; color: #F7F7EF; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Delete</button>
+        </a>
+    </div>
 </div>
 
 {% endblock %}

@@ -25,6 +25,7 @@ class Item(models.Model):
     options = {"quality": 80}
   )
 
+  url = models.URLField(blank=True, null=True)
   purchased = models.BooleanField(default=False)
   tags = models.ManyToManyField(Tag, blank=True)
 
