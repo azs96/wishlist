@@ -1,7 +1,7 @@
 from django.db import models
 
 from imagekit.models import ImageSpecField
-from imagekit.processors import ResizeToFill
+from imagekit.processors import ResizeToFit
 
 # Create your models here.
 
@@ -20,7 +20,7 @@ class Item(models.Model):
 
   detail_main = ImageSpecField(
     source = "image",
-    processors = [ResizeToFill(640,640)],
+    processors = [ResizeToFit(640,640)],
     format = "jpeg",
     options = {"quality": 80}
   )
