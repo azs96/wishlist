@@ -5,21 +5,26 @@
     <form class="form-inline my-2 my-lg-0 w-100 p-3" style="background-color: #F7F7EF;" method="get">
         {% csrf_token %}
         <div class="form-row w-100 align-items-center">
-            <div class="col">
-                <div style="color: #5289AF; font-weight: bold;">
+            <div class="col d-flex align-items-center">
+                <div style="color: #5289AF; font-weight: bold; margin-right: 20px;">
                     {{ form.q|as_crispy_field }}
                 </div>
-                <div class="d-flex flex-wrap mt-3">
-                    {% for tag in form.tags %}
-                        <label class="mr-2 mt-1" style="background-color: #D3E0EE; color: #5289AF; padding: 5px 10px; border-radius: 5px; cursor: pointer;">
-                            <input type="checkbox" name="tags" value="{{ tag.pk }}" style="display: none;" {% if tag in form.initial.tags %}checked{% endif %}>
-                            {{ tag }}
-                        </label>
-                    {% endfor %}
+                <div style="color: #5289AF; font-weight: bold;">
+                    {{ form.show_purchased|as_crispy_field }}
                 </div>
             </div>
             <div class="col-auto d-flex align-items-center justify-content-center">
                 <button type="submit" class="btn" style="background-color: #EEAA65; color: #FFFFFF;">Search</button>
+            </div>
+        </div>
+        <div class="form-row w-100 mt-3">
+            <div class="col d-flex flex-wrap">
+                {% for tag in form.tags %}
+                    <label class="mr-2 mt-1" style="background-color: #D3E0EE; color: #5289AF; padding: 5px 10px; border-radius: 5px; cursor: pointer;">
+                        <input type="checkbox" name="tags" value="{{ tag.pk }}" style="display: none;" {% if tag in form.initial.tags %}checked{% endif %}>
+                        {{ tag }}
+                    </label>
+                {% endfor %}
             </div>
         </div>
     </form>

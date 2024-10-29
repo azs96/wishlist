@@ -18,13 +18,15 @@ class ItemListView(ListView):
     if form.is_valid():
         q = form.cleaned_data.get('q')
         tags = form.cleaned_data.get('tags')
+        show_purchased = form.cleaned_data.get('show_purchased')
 
         if q:
-            qs = qs.filter(Q(name__icontains=q) | Q(memo__icontains=q))
-
+          qs = qs.filter(Q(name__icontains=q) | Q(memo__icontains=q))
         if tags:
           for tag in tags:
               qs = qs.filter(tags=tag) # タグが複数選択された場合はand検索
+        if not show_purchased:
+          qs = qs.filter(purchased=False)
 
     return qs
 

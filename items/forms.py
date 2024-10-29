@@ -21,3 +21,7 @@ class ItemSearchForm(forms.Form):
     label = 'tags',
     required = False
   )
+  show_purchased = forms.BooleanField(
+    required=False,
+    label = "Show Purchased Items"
+  )
