@@ -3,6 +3,7 @@
 {% block content %}
 <div class="row">
     <form class="form-inline my-2 my-lg-0 w-100 p-3" style="background-color: #F7F7EF;" method="get">
+        {% csrf_token %}
         <div class="form-row w-100 align-items-center">
             <div class="col">
                 <div style="color: #5289AF; font-weight: bold;">
