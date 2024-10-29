@@ -11,7 +11,7 @@ class ItemForm(forms.ModelForm):
 
   class Meta:
     model = Item
-    fields = ['name', 'memo', 'price', 'image', 'tags']
+    fields = ['name', 'memo', 'price', 'url', 'image', 'tags']
 
 class ItemSearchForm(forms.Form):
   q = forms.CharField(required=False, label='Seach Words')
