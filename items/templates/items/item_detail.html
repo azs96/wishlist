@@ -20,11 +20,13 @@
       <p>{{ item.memo }}</p>
       <h3>price</h3>
       <p>{{ item.price }}</p>
-      <h3>Tags</h3>
-      {% for tag in item.tags.all %}
-      <p>{{ tag }}</p>
-      {% endfor %}
     </div>
+</div>
+<div class="row ml-1 align-items-baseline">
+  <h4>Tags</h4>
+  {% for tag in item.tags.all %}
+  <p class="ml-2">{{ tag }}</p>
+  {% endfor %}
 </div>
 <hr>
 <div class="row">
