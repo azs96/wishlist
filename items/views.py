@@ -91,3 +91,33 @@ def mark_as_not_purchased(request, pk):
 
   messages.success(request, 'Unmarked as Purchased')
   return redirect('item:detail', pk=pk)
+
+# Tagモデル
+class TagListView(ListView):
+  model = Tag
+
+class TagUpdateView(UpdateView):
+  model = Tag
+  fields = ['name']
+  success_url = reverse_lazy('item:tag-index')
+  
+  def form_valid(self, form):
+    messages.success(self.request, 'Update Completed')
+    return super().form_valid(form)
+  
+  def form_invalid(self, form):
+    messages.error(self.request, 'Update Failed')
+    return super().form_invalid(form)
+
+class TagCreateView(CreateView):
+  model = Tag
+  fields = ['name']
+  success_url = reverse_lazy('item:tag-index')
+
+class TagDeleteView(DeleteView):
+  model = Tag
+  success_url = reverse_lazy('item:tag-index')
+
+  def form_valid(self, form):
+    messages.success(self.request, 'Deletion Completed')
+    return super().form_valid(form)
