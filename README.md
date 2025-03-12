@@ -12,3 +12,30 @@ The Wishlist App allows users to compile a list of desired items from multiple w
 
 ## Future prospects
 Users will be able to add items by simply pasting URLs, and the app will fetch the item details.
+
+# Get Started
+
+## Prerequisites
+
+Make sure you have the following installed:
+
+- pipenv
+
+## Installation
+
+1. Set up a virtual environment and install dependencies
+   
+   `pipenv install`
+   
+3. Activate the virtual environment
+
+   `pipenv shell`
+   
+5. Apply migrations
+
+   `python manage.py migrate`
+   
+7. Run the development server
+
+   `python manage.py runserver`
+9. Open your browser and go to: http://127.0.0.1:8000/
